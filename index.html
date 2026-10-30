@@ -21,7 +21,9 @@
   padding: 0;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: var(--dark);
@@ -39,7 +41,7 @@ a {
   margin: auto;
 }
 
-/* ШАПКА */
+/* HEADER */
 
 header {
   position: sticky;
@@ -47,25 +49,30 @@ header {
   z-index: 100;
   background: rgba(5,10,7,.95);
   border-bottom: 1px solid #1b3025;
+  backdrop-filter: blur(12px);
 }
 
 nav {
-  height: 75px;
+  min-height: 75px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .logo {
   font-size: 24px;
   font-weight: 900;
+  white-space: nowrap;
 }
 
-.logo span { color: var(--green); }
+.logo span {
+  color: var(--green);
+}
 
 .links {
   display: flex;
-  gap: 25px;
+  gap: 22px;
 }
 
 .links a {
@@ -75,9 +82,11 @@ nav {
   transition: .2s;
 }
 
-.links a:hover { color: white; }
+.links a:hover {
+  color: white;
+}
 
-/* КНОПКИ */
+/* BUTTONS */
 
 .btn {
   display: inline-block;
@@ -90,6 +99,7 @@ nav {
   border: none;
   cursor: pointer;
   transition: .3s;
+  text-align: center;
 }
 
 .btn:hover {
@@ -103,7 +113,7 @@ nav {
   border: 1px solid #29352d;
 }
 
-/* ГЛАВНЫЙ ЭКРАН */
+/* HERO */
 
 .hero {
   min-height: 620px;
@@ -118,10 +128,12 @@ nav {
   font-size: clamp(40px, 5vw, 65px);
   line-height: 1.05;
   font-weight: 900;
-  margin-bottom: 25px;
+  margin: 25px 0;
 }
 
-.green { color: var(--green); }
+.green {
+  color: var(--green);
+}
 
 .hero p {
   color: var(--muted);
@@ -151,7 +163,7 @@ nav {
   gap: 12px;
 }
 
-/* ПАНЕЛЬ ОПТИМИЗАЦИИ */
+/* DASHBOARD */
 
 .dashboard {
   background: linear-gradient(145deg,#0e1912,#070c09);
@@ -183,7 +195,9 @@ nav {
   border-radius: 12px;
 }
 
-.tile b { font-size: 12px; }
+.tile b {
+  font-size: 12px;
+}
 
 .tile small {
   display: block;
@@ -226,9 +240,11 @@ nav {
   margin: 10px auto;
 }
 
-/* СЕКЦИИ */
+/* SECTIONS */
 
-section { padding: 85px 0; }
+section {
+  padding: 85px 0;
+}
 
 .section-title {
   font-size: 40px;
@@ -241,7 +257,7 @@ section { padding: 85px 0; }
   line-height: 1.7;
 }
 
-/* КАРТОЧКИ */
+/* CARDS */
 
 .cards {
   display: grid;
@@ -267,7 +283,9 @@ section { padding: 85px 0; }
   margin-bottom: 20px;
 }
 
-.card h3 { margin-bottom: 12px; }
+.card h3 {
+  margin-bottom: 12px;
+}
 
 .card p {
   color: var(--muted);
@@ -275,7 +293,7 @@ section { padding: 85px 0; }
   line-height: 1.8;
 }
 
-/* ПОДХОД */
+/* APPROACH */
 
 .approach {
   display: grid;
@@ -291,7 +309,9 @@ section { padding: 85px 0; }
   margin-bottom: 12px;
 }
 
-.step b { color: var(--green); }
+.step b {
+  color: var(--green);
+}
 
 .step p {
   color: var(--muted);
@@ -300,7 +320,7 @@ section { padding: 85px 0; }
   line-height: 1.6;
 }
 
-/* ИГРОВАЯ ОПТИМИЗАЦИЯ */
+/* GAMES */
 
 .gamebox {
   padding: 35px;
@@ -329,7 +349,7 @@ section { padding: 85px 0; }
   font-size: 12px;
 }
 
-/* ТАРИФЫ */
+/* PRICES */
 
 .price {
   font-size: 27px;
@@ -350,7 +370,7 @@ section { padding: 85px 0; }
   border-color: var(--green);
 }
 
-/* КОНТАКТЫ */
+/* CONTACTS */
 
 .contact {
   padding: 40px;
@@ -373,7 +393,7 @@ section { padding: 85px 0; }
   line-height: 1.7;
 }
 
-/* ПОДВАЛ */
+/* FOOTER */
 
 footer {
   padding: 30px 0;
@@ -383,10 +403,11 @@ footer {
   margin-top: 50px;
 }
 
-/* МОБИЛЬНАЯ ВЕРСИЯ */
+/* MOBILE */
 
 @media(max-width:850px) {
-  .hero,.approach {
+  .hero,
+  .approach {
     grid-template-columns: 1fr;
   }
 
@@ -394,26 +415,40 @@ footer {
     grid-template-columns: repeat(2,1fr);
   }
 
-  .links { gap: 12px; }
+  .links {
+    gap: 12px;
+  }
 }
 
 @media(max-width:600px) {
-  .links { display: none; }
+  .links {
+    display: none;
+  }
 
   .cards {
     grid-template-columns: 1fr;
   }
 
-  .hero h1 { font-size: 42px; }
+  .hero h1 {
+    font-size: 42px;
+  }
 
-  .features { gap: 15px; }
+  .features {
+    gap: 15px;
+  }
 
   .contact {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .dashboard { transform: none; }
+  .dashboard {
+    transform: none;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
 }
 </style>
 </head>
@@ -436,10 +471,10 @@ footer {
     <a href="#contact">КОНТАКТЫ</a>
   </div>
 
-  <a class="btn"
+  <a class="btn discord-link"
      href="https://discord.gg/722R9CVxe"
      target="_blank"
-     rel="noopener">
+     rel="noopener noreferrer">
      DISCORD
   </a>
 
@@ -448,7 +483,7 @@ footer {
 
 <main>
 
-<!-- ГЛАВНЫЙ ЭКРАН -->
+<!-- MAIN -->
 
 <div class="container hero">
 
@@ -466,12 +501,13 @@ footer {
   </h1>
 
   <p>
-    Профессиональная оптимизация Windows и
-    повышение производительности компьютера:
+    Профессиональная оптимизация Windows
+    и повышение производительности компьютера:
     безопасно, понятно, под ваши задачи.
   </p>
 
   <div class="features">
+
     <div>
       <strong>WINDOWS</strong>
       <small>ОПТИМИЗАЦИЯ</small>
@@ -486,9 +522,11 @@ footer {
       <strong>ПОДДЕРЖКА</strong>
       <small>ПОСЛЕ НАСТРОЙКИ</small>
     </div>
+
   </div>
 
   <div class="buttons">
+
     <a class="btn" href="#contact">
       НАЧАТЬ ОПТИМИЗАЦИЮ
     </a>
@@ -496,11 +534,12 @@ footer {
     <a class="btn secondary" href="#services">
       ЧТО МЫ ДЕЛАЕМ
     </a>
+
   </div>
 
 </div>
 
-<!-- ПАНЕЛЬ -->
+<!-- DASHBOARD -->
 
 <div class="dashboard">
 
@@ -553,11 +592,12 @@ footer {
     </div>
 
   </div>
-</div>
 
 </div>
 
-<!-- УСЛУГИ -->
+</div>
+
+<!-- SERVICES -->
 
 <section id="services">
 
@@ -623,8 +663,8 @@ footer {
       <div class="icon">◎</div>
       <h3>Поддержка</h3>
       <p>
-        Помощь с настройками и консультации
-        после работы.
+        Помощь с настройками
+        и консультации после работы.
       </p>
     </div>
 
@@ -632,7 +672,7 @@ footer {
 </div>
 </section>
 
-<!-- ПОДХОД -->
+<!-- APPROACH -->
 
 <section id="approach">
 
@@ -701,7 +741,7 @@ footer {
 </div>
 </section>
 
-<!-- ОТЗЫВЫ -->
+<!-- REVIEWS -->
 
 <section id="reviews">
 
@@ -739,10 +779,11 @@ footer {
     </div>
 
   </div>
+
 </div>
 </section>
 
-<!-- ТАРИФЫ -->
+<!-- PRICES -->
 
 <section id="prices">
 
@@ -759,6 +800,7 @@ footer {
   <div class="cards">
 
     <div class="card">
+
       <h3>Базовый</h3>
 
       <div class="price">По запросу</div>
@@ -772,9 +814,11 @@ footer {
       <a class="btn secondary" href="#contact">
         ЗАКАЗАТЬ
       </a>
+
     </div>
 
     <div class="card featured">
+
       <h3>Комплексный</h3>
 
       <div class="price">По запросу</div>
@@ -788,9 +832,11 @@ footer {
       <a class="btn" href="#contact">
         ЗАКАЗАТЬ
       </a>
+
     </div>
 
     <div class="card">
+
       <h3>Игровой</h3>
 
       <div class="price">По запросу</div>
@@ -804,13 +850,15 @@ footer {
       <a class="btn secondary" href="#contact">
         ЗАКАЗАТЬ
       </a>
+
     </div>
 
   </div>
+
 </div>
 </section>
 
-<!-- КОНТАКТЫ -->
+<!-- CONTACTS -->
 
 <section id="contact">
 
@@ -819,6 +867,7 @@ footer {
   <div class="contact">
 
     <div>
+
       <h2>
         НАЧНЁМ С
         <span class="green">ВАШЕГО ПК?</span>
@@ -828,12 +877,11 @@ footer {
         Напишите нам и расскажите
         о своей проблеме.
       </p>
+
     </div>
 
-    <!-- DISCORD: ТВОЯ ССЫЛКА -->
-
     <a
-      class="btn"
+      class="btn discord-link"
       href="https://discord.gg/722R9CVxe"
       target="_blank"
       rel="noopener noreferrer"
@@ -842,17 +890,20 @@ footer {
     </a>
 
   </div>
+
 </div>
 </section>
 
 </main>
 
-<!-- ПОДВАЛ -->
+<!-- FOOTER -->
 
 <footer>
+
 <div class="container">
   © 2026 SkillOpti. Оптимизация ПК.
 </div>
+
 </footer>
 
 <script>
@@ -868,11 +919,13 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     );
 
     if (target) {
+
       e.preventDefault();
 
       target.scrollIntoView({
         behavior: 'smooth'
       });
+
     }
 
   });
