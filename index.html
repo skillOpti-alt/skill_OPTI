@@ -1,38 +1,504 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050b08">
-<title>SkillOpti — оптимизация ПК</title>
-<style>
-:root{--bg:#050a07;--panel:#0d1511;--panel2:#111c16;--green:#19e98b;--mint:#8affc4;--text:#f2fff8;--muted:#9bb1a5;--line:rgba(25,233,139,.2)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 78% 18%,rgba(0,180,100,.12),transparent 34%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 44px));margin:auto}
-header{height:76px;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;background:rgba(5,10,7,.88);backdrop-filter:blur(14px);z-index:10}.nav{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:10px;align-items:center;font-weight:900;font-size:22px;letter-spacing:-.8px}.brand b{color:var(--green)}.orb{width:20px;height:20px;border-radius:50%;background:var(--green);box-shadow:0 0 22px var(--green)}nav{display:flex;gap:26px}nav a{font-size:11px;letter-spacing:1px;font-weight:800;color:#12d980;transition:.2s}nav a:hover{color:white}.btn{border:0;border-radius:999px;background:var(--green);color:#032113;padding:15px 23px;font-size:11px;font-weight:900;letter-spacing:.5px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;box-shadow:0 8px 28px rgba(25,233,139,.12)}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(25,233,139,.25)}.btn.secondary{background:#101713;color:#eafff3;border:1px solid rgba(255,255,255,.1);box-shadow:none}.menu{display:none;background:none;color:white;border:0;font-size:24px}
-.hero{padding:74px 0 105px;min-height:610px;display:grid;grid-template-columns:1fr 1.05fr;gap:54px;align-items:center}.eyebrow{color:var(--green);font-size:11px;font-weight:900;letter-spacing:2px;margin-bottom:20px}.hero h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-2.8px;margin:0 0 23px;font-weight:950}.hero h1 span{color:var(--green)}.lead{font-size:15px;line-height:1.8;color:#b4c7bd;max-width:480px}.quick{display:flex;gap:30px;margin:27px 0 32px}.quick strong{display:block;font-size:13px}.quick small{display:block;color:var(--muted);font-size:10px;margin-top:5px}.actions{display:flex;gap:12px;flex-wrap:wrap}
-.dashboard{background:linear-gradient(145deg,#0b1510,#070c09);border:1px solid rgba(25,233,139,.58);border-radius:24px;padding:22px;box-shadow:0 0 65px rgba(0,210,115,.12);transform:rotate(-1deg)}.dash-top{display:flex;align-items:center;gap:12px;margin-bottom:18px}.status{width:13px;height:13px;border-radius:4px;background:var(--green);box-shadow:0 0 15px var(--green)}.dash-top strong{font-size:12px}.dash-top small{display:block;color:var(--muted);font-size:10px;margin-top:4px}.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.tile{background:#121a15;border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:14px}.tile b{font-size:11px;display:block}.tile small{font-size:9px;color:var(--muted)}.bar{height:5px;background:#26352c;border-radius:9px;margin-top:10px;overflow:hidden}.bar i{display:block;height:100%;width:85%;background:var(--green);border-radius:9px}.chartbox{grid-column:span 2;min-height:115px}.chartbox svg{width:100%;height:68px;margin-top:8px}.circlebox{display:flex;align-items:center;justify-content:center;flex-direction:column}.ring{width:62px;height:62px;border-radius:50%;border:7px solid #1b3025;border-top-color:var(--green);border-right-color:var(--green);transform:rotate(25deg);margin-bottom:9px}.minirow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.minirow span{height:28px;background:#121a15;border:1px solid #26332b;border-radius:8px}
-section{padding:82px 0}.section-head{margin-bottom:34px}.section-head h2{font-size:clamp(30px,4vw,43px);letter-spacing:-1.5px;margin:0 0 10px}.section-head h2 span{color:var(--green)}.section-head p{color:var(--muted);margin:0;line-height:1.6}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:linear-gradient(145deg,#101a14,#0b110d);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:25px;transition:.25s}.card:hover{transform:translateY(-5px);border-color:var(--line)}.icon{width:42px;height:42px;border-radius:13px;background:rgba(25,233,139,.1);color:var(--green);display:grid;place-items:center;font-size:20px;margin-bottom:18px}.card h3{font-size:17px;margin:0 0 9px}.card p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}.approach{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.steps{display:grid;gap:12px}.step{display:flex;gap:15px;padding:18px;border:1px solid rgba(255,255,255,.07);background:#0c140f;border-radius:15px}.num{color:var(--green);font-weight:900;font-size:20px}.step b{font-size:14px}.step p{font-size:12px;color:var(--muted);margin:5px 0 0;line-height:1.6}.gamebox{border-radius:22px;border:1px solid var(--line);padding:30px;background:radial-gradient(circle at 80% 20%,rgba(25,233,139,.14),transparent 45%),#0b130e}.gamebox h3{font-size:25px;margin:0 0 12px}.game-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.game-tags span{border:1px solid rgba(25,233,139,.25);color:#a8ffcf;padding:9px 13px;border-radius:999px;font-size:11px;font-weight:800}.quote{font-size:13px;color:#d3e2d9;line-height:1.7}.quote em{color:var(--muted);font-style:normal;display:block;margin-top:14px}.price{font-size:27px;color:var(--green);font-weight:900;margin:15px 0}.game-label{display:inline-block;color:var(--green);background:rgba(25,233,139,.08);border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-size:10px;font-weight:900;letter-spacing:1px;margin-bottom:16px}.game-subtitle{font-size:11px;color:var(--mint);font-weight:800;letter-spacing:1px;margin:-3px 0 13px!important}.game-card{display:flex;flex-direction:column}.game-card ul{flex:1;list-style:none;padding:0;margin:18px 0 22px}.game-card ul li{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);line-height:1.55}.game-card ul li:before{content:"✓";color:var(--green);font-weight:900;margin-right:9px}.game-card .btn{width:100%}.card ul{padding-left:18px;color:var(--muted);font-size:12px;line-height:2.1;margin-bottom:22px}.featured{border-color:rgba(25,233,139,.55);box-shadow:0 0 35px rgba(25,233,139,.08)}.contact{border:1px solid var(--line);border-radius:24px;padding:40px;background:radial-gradient(circle at 85% 20%,rgba(25,233,139,.14),transparent 38%),#0c1510;display:flex;align-items:center;justify-content:space-between;gap:25px}.contact h2{font-size:32px;margin:0 0 10px}.contact p{color:var(--muted);margin:0;line-height:1.6}footer{padding:28px 0;border-top:1px solid rgba(255,255,255,.07);color:#71877a;font-size:11px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-@media(max-width:800px){nav{display:none;position:absolute;top:76px;left:0;right:0;background:#08100b;padding:20px 24px;flex-direction:column;gap:18px;border-bottom:1px solid var(--line)}nav.open{display:flex}.menu{display:block}.nav>.btn{display:none}.hero{grid-template-columns:1fr;padding:58px 0 75px;gap:38px}.hero h1{font-size:49px}.dashboard{transform:none}.cards{grid-template-columns:repeat(2,1fr)}.approach{grid-template-columns:1fr}.contact{align-items:flex-start;flex-direction:column}}
-@media(max-width:540px){.wrap{width:min(100% - 30px,1120px)}.hero h1{font-size:42px;letter-spacing:-1.8px}.quick{gap:18px}.quick strong{font-size:11px}.cards{grid-template-columns:1fr}section{padding:62px 0}.dashboard{padding:15px}.tile{padding:10px}.contact{padding:27px}.contact h2{font-size:26px}.minirow{gap:4px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0e0c">
+  <meta name="description" content="SkillOpti — проект по оптимизации ПК и улучшению игрового опыта в Rust.">
+  <title>SkillOpti — Играй без лишних ограничений</title>
+
+  <style>
+    :root {
+      --bg: #090c0a;
+      --panel: #111713;
+      --green: #8cff65;
+      --green-dark: #43c928;
+      --text: #f1f5ef;
+      --muted: #a0aaa0;
+      --border: rgba(140, 255, 101, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, Segoe UI, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(9, 12, 10, 0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 21px;
+      border-radius: 10px;
+      font-weight: 800;
+      transition: transform 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--green);
+      color: #10150e;
+    }
+
+    .button-primary:hover {
+      background: #a6ff87;
+    }
+
+    .button-outline {
+      border: 1px solid var(--border);
+      background: #ffffff05;
+    }
+
+    .button-outline:hover {
+      background: #8cff6510;
+    }
+
+    .hero {
+      min-height: 600px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 55px;
+      padding-top: 75px;
+      padding-bottom: 75px;
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 6px 12px;
+      color: var(--green);
+      background: #8cff6509;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 22px 0;
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.04;
+      letter-spacing: -3px;
+    }
+
+    h1 span {
+      color: var(--green);
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .preview {
+      min-height: 320px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at 50% 45%, #4fd52c26, transparent 55%),
+        linear-gradient(145deg, #141c15, #0c100d);
+    }
+
+    .preview::before,
+    .preview::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border: 1px solid #8cff6524;
+      border-radius: 50%;
+    }
+
+    .preview::after {
+      width: 300px;
+      height: 300px;
+    }
+
+    .preview-logo {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      font-size: 66px;
+      font-weight: 950;
+      letter-spacing: -5px;
+      text-shadow: 0 0 45px #8cff6533;
+    }
+
+    .preview-logo span {
+      color: var(--green);
+    }
+
+    .preview-logo small {
+      display: block;
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 35px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 43px);
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 27px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--panel);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: #8cff6570;
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      background: #8cff6512;
+      color: var(--green);
+      font-size: 23px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cta {
+      padding: 50px 25px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background:
+        radial-gradient(ellipse at center, #49d32b17, transparent 70%),
+        var(--panel);
+    }
+
+    .cta h2 {
+      margin-bottom: 12px;
+      font-size: clamp(29px, 4vw, 42px);
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 25px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a:hover {
+      color: var(--green);
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        min-height: auto;
+        padding-top: 65px;
+      }
+
+      .preview {
+        min-height: 250px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links .optional {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        min-height: 65px;
+      }
+
+      .logo {
+        font-size: 21px;
+      }
+
+      .nav-links {
+        font-size: 12px;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header><div class="wrap nav"><a class="brand" href="#top"><span class="orb"></span>Skill <b>Opti</b></a><nav id="nav"><a href="#services">УСЛУГИ</a><a href="#approach">ПОДХОД</a><a href="#prices">ИГРЫ</a><a href="#reviews">ОТЗЫВЫ</a><a href="#prices">ТАРИФЫ</a><a href="#contact">КОНТАКТЫ</a></nav><a class="btn" href="https://discord.gg/722R9CVxe" target="_blank" rel="noopener">DISCORD</a><button class="menu" id="menu" aria-label="Открыть меню">☰</button></div></header>
-<main id="top"><div class="wrap hero"><div><div class="eyebrow">ОПТИМИЗАЦИЯ • НАСТРОЙКА • ПОДДЕРЖКА</div><h1>РАСКРОЙ<br>МАКСИМУМ<br><span>ВОЗМОЖНОСТЕЙ</span><br>СВОЕГО ПК</h1><p class="lead">Профессиональная настройка Windows и повышение производительности компьютера: безопасно, понятно и под ваши задачи.</p><div class="quick"><div><strong>WINDOWS</strong><small>ОПТИМИЗАЦИЯ</small></div><div><strong>ИГРЫ</strong><small>СТАБИЛЬНАЯ РАБОТА</small></div><div><strong>ПОДДЕРЖКА</strong><small>ПОСЛЕ НАСТРОЙКИ</small></div></div><div class="actions"><a class="btn" href="#contact">НАЧАТЬ ОПТИМИЗАЦИЮ</a><a class="btn secondary" href="#services">ЧТО МЫ ДЕЛАЕМ</a></div></div>
-<div class="dashboard"><div class="dash-top"><span class="status"></span><div><strong>Добро пожаловать в SkillOpti</strong><small>Пример интерфейса: этапы оптимизации</small></div></div><div class="dash-grid"><div class="tile"><b>Автозагрузка</b><small>Порядок</small><div class="bar"><i></i></div></div><div class="tile"><b>Службы</b><small>Проверка</small><div class="bar"><i style="width:72%"></i></div></div><div class="tile"><b>Игры</b><small>Профиль</small><div class="bar"><i style="width:90%"></i></div></div><div class="tile chartbox"><small>Нагрузка системы · пример</small><svg viewBox="0 0 420 70" preserveAspectRatio="none"><polyline points="0,34 38,62 78,13 116,54 158,28 196,47 236,35 280,43 330,37 370,40 420,35" fill="none" stroke="#19e98b" stroke-width="3"/></svg></div><div class="tile circlebox"><div class="ring"></div><small>Статус системы</small></div></div><div class="minirow"><span></span><span></span><span></span><span></span><span></span></div></div></div>
-<section id="services"><div class="wrap"><div class="section-head"><h2>НАШИ <span>УСЛУГИ</span></h2><p>Работаем с системой комплексно: от настроек Windows до игровых профилей.</p></div><div class="cards"><article class="card"><div class="icon">⌘</div><h3>Оптимизация Windows</h3><p>Проверка автозагрузки, фоновых приложений и настроек системы. Без сомнительных «твиков».</p></article><article class="card"><div class="icon">⚡</div><h3>Настройка игр</h3><p>Подбор графических и системных настроек под конфигурацию вашего компьютера.</p></article><article class="card"><div class="icon">▣</div><h3>Диагностика ПК</h3><p>Помощь в поиске причин тормозов, перегрева и нестабильной работы.</p></article><article class="card"><div class="icon">◈</div><h3>Автозагрузка</h3><p>Разбор программ, запускающихся вместе с Windows, и отключение ненужного с вашего согласия.</p></article><article class="card"><div class="icon">⌁</div><h3>Чистота системы</h3><p>Проверка временных файлов и аккуратная очистка без удаления важных данных.</p></article><article class="card"><div class="icon">◎</div><h3>Помощь и поддержка</h3><p>Объясняем, что меняется, и помогаем разобраться с настройками после работы.</p></article></div></div></section>
-<section id="approach"><div class="wrap approach"><div><div class="section-head"><h2>ПОНЯТНЫЙ <span>ПОДХОД</span></h2><p>Никаких магических кнопок «+300 FPS». Сначала разбираемся в проблеме, затем выбираем безопасные действия.</p></div><div class="steps"><div class="step"><div class="num">01</div><div><b>Знакомимся с вашим ПК</b><p>Уточняем комплектующие, версию Windows и задачи.</p></div></div><div class="step"><div class="num">02</div><div><b>Проверяем систему</b><p>Ищем реальные причины проблем и согласуем план.</p></div></div><div class="step"><div class="num">03</div><div><b>Настраиваем и проверяем</b><p>Меняем только необходимые параметры и проверяем результат.</p></div></div></div></div><div class="gamebox"><div class="eyebrow">ДЛЯ ГЕЙМЕРОВ</div><h3>Больше внимания игре.<br><span style="color:var(--green)">Меньше лишней нагрузки.</span></h3><p class="lead">Настройки под конкретную сборку и любимые игры. Итог зависит от комплектующих, температуры и состояния системы.</p><div class="game-tags"><span>CS2</span><span>RUST</span><span>MINECRAFT</span><span>И ДРУГИЕ ИГРЫ</span></div></div></div></section>
-<section id="reviews"><div class="wrap"><div class="section-head"><h2>ОТЗЫВЫ <span>КЛИЕНТОВ</span></h2><p>Добавьте сюда реальные отзывы после выполнения заказов.</p></div><div class="cards"><article class="card"><div class="icon">✦</div><p class="quote">«Здесь будет ваш первый настоящий отзыв о качестве работы и общении.»<em>— Имя клиента</em></p></article><article class="card"><div class="icon">✦</div><p class="quote">«Попросите клиента описать, какая проблема была и что изменилось.»<em>— Имя клиента</em></p></article><article class="card"><div class="icon">✦</div><p class="quote">«Публикуйте отзывы только с разрешения клиентов.»<em>— SkillOpti</em></p></article></div></div></section>
-<section id="prices"><div class="wrap"><div class="section-head"><h2>ТАРИФЫ ДЛЯ <span>ИГР</span></h2><p>Выбери игру, для которой нужна оптимизация. Состав работ подбирается под характеристики твоего ПК.</p></div><div class="cards">
-<article class="card game-card"><div class="game-label">COMPETITIVE</div><h3>Counter-Strike 2</h3><p class="game-subtitle">CS2 • FPS И СТАБИЛЬНОСТЬ</p><p>Настройка CS2 и Windows для более плавной игры, отзывчивого управления и стабильной частоты кадров.</p><ul><li>Оптимизация графических настроек</li><li>Настройка параметров запуска игры</li><li>Проверка фоновых процессов Windows</li><li>Настройка системы под конфигурацию ПК</li><li>Работа над стабильностью FPS и уменьшением просадок</li></ul><div class="price">По запросу</div><a class="btn secondary" href="#contact">ВЫБРАТЬ CS2</a></article>
-<article class="card game-card featured"><div class="game-label">SURVIVAL</div><h3>RUST</h3><p class="game-subtitle">(devblog)</p><p>Настройка Rust с учётом высокой нагрузки на процессор, видеокарту и оперативную память.</p><ul><li>Подбор графики под возможности компьютера</li><li>Настройка параметров запуска Rust</li><li>Проверка использования оперативной памяти</li><li>Снижение лишней фоновой нагрузки</li><li>Работа над фризами и стабильностью на серверах</li></ul><div class="price">По запросу</div><a class="btn" href="#contact">ВЫБРАТЬ RUST</a></article>
-<article class="card game-card"><div class="game-label">SANDBOX</div><h3>Minecraft</h3><p class="game-subtitle">JAVA EDITION</p><p>Оптимизация Minecraft для комфортной игры, более стабильного FPS и быстрой загрузки миров.</p><ul><li>Настройка выделения оперативной памяти</li><li>Оптимизация графики и дальности прорисовки</li><li>Настройка Java и параметров запуска</li><li>Подбор настроек для модов и сборок</li><li>Уменьшение лагов и микрофризов</li></ul><div class="price">По запросу</div><a class="btn secondary" href="#contact">ВЫБРАТЬ MINECRAFT</a></article>
-</div></div></section>
-<section id="contact"><div class="wrap"><div class="contact"><div><div class="eyebrow">ЕСТЬ ВОПРОСЫ?</div><h2>НАЧНЁМ С <span style="color:var(--green)">ВАШЕГО ПК</span></h2><p>Напишите нам, расскажите о компьютере и проблеме.<br>Нажмите кнопку ниже, чтобы перейти на наш Discord-сервер.</p></div><a class="btn" href="https://discord.gg/722R9CVxe" target="_blank" rel="noopener">НАПИСАТЬ В DISCORD ↗</a></div></div></section>
-</main><footer><div class="wrap foot"><span>© 2026 SkillOpti. Все права защищены.</span><span>Оптимизация ПК • Честно и понятно</span></div></footer>
-<script>
-const menu=document.getElementById('menu'),nav=document.getElementById('nav');
-menu.addEventListener('click',()=>{nav.classList.toggle('open');menu.textContent=nav.classList.contains('open')?'✕':'☰'});
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.textContent='☰'}));
-</script></body></html>
+  <header>
+    <nav class="container">
+      <a href="#home" class="logo">Skill<span>Opti</span></a>
+
+      <div class="nav-links">
+        <a href="#features">Возможности</a>
+        <a href="#about" class="optional">О проекте</a>
+        <a href="https://discord.gg/Jt9hWYhTk"
+           target="_blank"
+           rel="noopener noreferrer">Discord ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div>
+        <span class="tag">Gaming optimization project</span>
+
+        <h1>Играй лучше.<br><span>Оптимизируй умнее.</span></h1>
+
+        <p>
+          SkillOpti — проект, посвящённый оптимизации игрового ПК,
+          настройкам производительности и удобным инструментам для игроков.
+          Начинаем с Rust и развиваем проект дальше.
+        </p>
+
+        <div class="hero-buttons">
+          <a class="button button-primary"
+             href="https://discord.gg/Jt9hWYhTk"
+             target="_blank"
+             rel="noopener noreferrer">
+            Присоединиться к Discord ↗
+          </a>
+
+          <a class="button button-outline" href="#features">
+            Изучить возможности ↓
+          </a>
+        </div>
+      </div>
+
+      <div class="preview" aria-label="Логотип SkillOpti">
+        <div class="preview-logo">
+          Skill<span>Opti</span>
+          <small>OPTIMIZE YOUR GAME</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-heading">
+          <span class="tag">Возможности</span>
+          <h2>Больше контроля над ПК</h2>
+          <p>Инструменты, которые разрабатываются для игрового опыта.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Оптимизация системы</h3>
+            <p>
+              Работа над настройками Windows и игрового ПК
+              с акцентом на производительность и стабильность.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🎮</div>
+            <h3>Настройки для Rust</h3>
+            <p>
+              Отдельное направление проекта для игроков Rust,
+              включая изучение настроек и полезных инструментов.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🛠️</div>
+            <h3>Собственные инструменты</h3>
+            <p>
+              Разработка модулей SkillOpti для удобного управления
+              настройками и игровыми функциями.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="cta">
+          <span class="tag">Сообщество SkillOpti</span>
+          <h2>Развиваем проект вместе</h2>
+          <p>
+            Следи за обновлениями, обсуждай идеи и узнавай о ходе разработки
+            в нашем Discord-сообществе.
+          </p>
+
+          <a class="button button-primary"
+             href="https://discord.gg/Jt9hWYhTk"
+             target="_blank"
+             rel="noopener noreferrer">
+            Открыть Discord ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> SkillOpti. Независимый игровой проект.</span>
+
+      <div class="footer-links">
+        <a href="#home">Наверх ↑</a>
+        <a href="https://discord.gg/Jt9hWYhTk"
+           target="_blank"
+           rel="noopener noreferrer">Discord</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
